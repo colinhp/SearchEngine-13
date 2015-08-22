@@ -1,0 +1,38 @@
+rawpage    /zrepo/documents/SearchEngine/text 
+#rawpage   /zrepo/documents/SearchEngine/txt.utf8.repos.d
+
+pagedb_file     /zrepo/documents/SearchEngine/pagedb
+
+pagedbidx_use_file   /zrepo/documents/SearchEngine/pagedbidx
+
+pagedbidx_use_db    no
+sql_host    127.0.0.1
+sql_port    3306
+sql_usr     usr1
+sql_passwd	123456
+sql_db      db_test 
+sql_table   pageidxtbl
+
+pagehash    /zrepo/documents/SearchEngine/pagehash
+
+invertidx    /zrepo/documents/SearchEngine/invertidx
+
+NLPIR       /zrepo/documents/SearchEngine/NLPIR 
+stoplist1    /zrepo/code/SearchEngine/data/stoplist1.txt
+stoplist2    /zrepo/code/SearchEngine/data/stoplist2.txt
+
+log_config    /zrepo/code/SearchEngine/data/logcfg
+
+redis_host 127.0.0.1
+redis_port   6379
+
+#ip     192.168.22.128
+ip      127.0.0.1
+port  8088
+
+threadsnum    5
+queuesize     10
+
+max_num_result 10
+
+

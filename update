@@ -1,0 +1,13 @@
+#!/bin/sh
+
+rm /zrepo/documents/SearchEngine/pagedb
+rm /zrepo/documents/SearchEngine/pagedbidx
+rm /zrepo/documents/SearchEngine/pagehash
+rm /zrepo/documents/SearchEngine/invertidx
+rm /zrepo/code/SearchEngine/log/*
+touch /zrepo/documents/SearchEngine/pagedb
+touch /zrepo/documents/SearchEngine/pagedbidx
+touch /zrepo/documents/SearchEngine/pagehash
+touch /zrepo/documents/SearchEngine/invertidx
+
+
