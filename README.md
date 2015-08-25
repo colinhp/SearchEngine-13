@@ -1,9 +1,10 @@
 #SearchEngine
 * 本项目实现了一个基于向量空间模型的轻量级网页文本搜索引擎，检索的核心是用TF-IDF计算文本的特征权重，根据Cosine相似性原理比较查询语句和文档的相似性。
-#特点：
+
+#特点
 * 字符转码，信息指纹，网页去重，TF-IDF，余弦相似度，MySQL, Redis，单例模式，简单工厂模式，Epoll，线程池，TCP, STL
 
-#开发环境：
+#开发环境
 ```
 * CentOS Linux release 7.0.1406 (x64)
 * g++ (GCC) 4.8.3 20140911 (Red Hat 4.8.3-9)
@@ -154,7 +155,7 @@ Json Serialization
  return result
 
 ```
-#程序样例：
+#程序样例
 ```
 [usr1@localhost SearchEngine]$ ./test/client.o 
 Please input query word:
