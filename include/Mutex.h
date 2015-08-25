@@ -13,6 +13,8 @@ class Mutex
 		pthread_mutex_t * get_mutex_ptr();
 
 	private:
+		Mutex( const Mutex & ) = delete;
+		Mutex & operator=( const Mutex &)=delete;
 		pthread_mutex_t m_mutex;
 
 };

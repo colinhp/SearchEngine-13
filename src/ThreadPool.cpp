@@ -48,7 +48,6 @@ void ThreadPool::start()
 void ThreadPool::stop()
 {
 
-	MY_LOG_DEBUG("ThreadPool::stop()");
 
 	if( m_starting == false )
 	{
@@ -56,6 +55,8 @@ void ThreadPool::stop()
 	}
 	else 
 	{
+
+		MY_LOG_DEBUG("ThreadPool::stop()");
 		m_starting = false;
 		m_empty.notify_all();
 		m_full.notify_all();

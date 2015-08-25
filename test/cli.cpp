@@ -41,20 +41,18 @@ void client()
 	int num=0;
 	while(1)
 	{
+		std::cout<<"Please input query word:"<<std::endl;
 		std::string query;	
 		std::cin>> query;
 		query +="\r\n";
-		std::cout<<num<< "  you have input "<<std::endl;
-		printf("%s", query.c_str());
 		num++;
 
 		int ret = write( sfd, query.c_str(), query.size());
-		std::cout<<"write n "<<ret<<std::endl;
 		if( -1 == ret )
 			MY_LOG_ERROR("read");
 		memset(buf, 0, 1024*100);
 		ret = read(sfd, buf,1024*100);
-		std::cout<<"read n "<<ret<<std::endl;
+		std::cout<<"result: "<<std::endl;
 		if( -1 == ret )
 			MY_LOG_ERROR("read");
 				

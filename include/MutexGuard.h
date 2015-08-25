@@ -9,6 +9,8 @@ class MutexGuard
 		explicit  MutexGuard( Mutex & mutex);
 		~MutexGuard();
 	private:
+		MutexGuard(const MutexGuard&)=delete;
+		MutexGuard & operator=( const MutexGuard &)=delete;
 		Mutex & m_mutex;
 };
 

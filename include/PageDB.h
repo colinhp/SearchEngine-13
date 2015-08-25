@@ -3,7 +3,11 @@
 
 #include"Page.h"
 #include"Mutex.h"
-
+#include"IndexEntry.h"
+#include"Indexer.h"
+#include"IndexFile.h"
+#include"IndexDB.h"
+#include"FileMgr.h"
 #include<string>
 #include<vector>
 #include<unordered_map>
@@ -72,103 +76,6 @@ private:
 };
 
 */
-
-
-//索引格式
-//id, offset, length, contenthash , filenum
-
-//网页库索引项
-class IndexEntry
-{
-	public:
-	IndexEntry() = default;
-	explicit IndexEntry(const std::string & str);
-
-	std::string hash_to_hex_string() const ;
-	void hex_string_to_hash( const std::string & hexstr );
-
-	size_t	m_id;
-	size_t  m_offset;
-	size_t  m_length;
-	unsigned char   m_contenthash[16];
-	int   m_filenum;
-
-};
-
-
-//索引管理器
-class Indexer
-{
-	public:
-	virtual bool add_index( const IndexEntry & idx ) =0;
-	virtual bool get_index( IndexEntry & idx )=0 ;
-	virtual bool save()=0;
-	virtual size_t generate_id()=0;
-	virtual ~Indexer(){};
-
-};
-
-//索引存储到文件中, 运行时加载到内存中
-class IndexFile : public Indexer
-{
-	public:
-	 explicit IndexFile( const std::string & indexfile );
-	 ~IndexFile();
-	 bool add_index( const IndexEntry & idx );
-	 bool get_index( IndexEntry & idx);
-	 bool save();
-	 size_t generate_id();
-	private:
-	 std::fstream  m_indexStream ;
-	 std::map< size_t , IndexEntry > m_indexMap;
-	 size_t m_count;
-	 bool  m_update;
-
-};
-
-
-//索引存储到数据库中
-class IndexDB : public Indexer
-{
-	public:
-	 IndexDB();
-	 ~IndexDB();
-	 bool add_index( const IndexEntry & idx );
-	 bool get_index( IndexEntry & idx);
-	 bool save(){ return true;}
-	 size_t generate_id();
-
-	private:
-	MYSQL * m_conn;
-	std::string m_db;
-	std::string m_table;
-	size_t m_count;
-	Mutex m_mutex;
-
-};
-
-
-//网页库文件管理器
-#define  MAX_FILE_NUM 5
-class FileMgr
-{
-	public:
-		explicit FileMgr( const std::string & file );
-		~FileMgr();
-		FileMgr( const FileMgr & )  = delete;
-		FileMgr & operator=( const FileMgr & ) = delete ;
-		bool add_page( const Page & page, IndexEntry & idx);
-		bool get_page( const IndexEntry & idx, Page & page );
-		void save_to_file();
-
-	private:
-		std::fstream  m_fileStream[ MAX_FILE_NUM ];
-		int  m_lastFileNum;
-		Mutex m_mutex;
-	
-
-};
-
 
 
 //单例模式,网页库数据类

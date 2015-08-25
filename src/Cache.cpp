@@ -13,7 +13,7 @@ Cache::Cache( const std::string & hostname, int port)
 		if( rc  )
 		{
 			is_connecting = true;
-			MY_LOG_ERROR(" Cache::Cache() redisConnectWithTimeout() errro: %s", rc->err);
+			MY_LOG_ERROR(" Cache::Cache() redisConnectWithTimeout() errro: %s", rc->errstr);
 		}
 		else
 		{

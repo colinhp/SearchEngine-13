@@ -33,7 +33,8 @@ int main()
 
 	int start = clock();
 	initiation();
-	printf("%.3lf second\n", double( clock()-start)/ CLOCKS_PER_SEC);
+	printf("%.3lf second\nInitialization completed\n", double( clock()-start)/ CLOCKS_PER_SEC);
+
 
 	Conf cf = Conf::get_instance();
 	size_t queuesize = strtoul( cf["queuesize"].c_str() ,NULL, 0);

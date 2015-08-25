@@ -1,5 +1,5 @@
 #!/bin/sh
-
+:<<!
 rm /zrepo/documents/SearchEngine/pagedb
 rm /zrepo/documents/SearchEngine/pagedbidx
 rm /zrepo/documents/SearchEngine/pagehash
@@ -9,5 +9,16 @@ touch /zrepo/documents/SearchEngine/pagedb
 touch /zrepo/documents/SearchEngine/pagedbidx
 touch /zrepo/documents/SearchEngine/pagehash
 touch /zrepo/documents/SearchEngine/invertidx
+!
+
+rm /zrepo/code/SearchEngine/data/pagedb
+rm /zrepo/code/SearchEngine/data/pagedbidx
+rm /zrepo/code/SearchEngine/data/pagehash
+rm /zrepo/code/SearchEngine/data/invertidx
+rm /zrepo/code/SearchEngine/log/*
+touch /zrepo/code/SearchEngine/data/pagedb
+touch /zrepo/code/SearchEngine/data/pagedbidx
+touch /zrepo/code/SearchEngine/data/pagehash
+touch /zrepo/code/SearchEngine/data/invertidx
 
 
