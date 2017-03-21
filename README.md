@@ -1,16 +1,16 @@
-#SearchEngine
+# SearchEngine
 * 本项目实现了一个基于向量空间模型的轻量级网页文本搜索引擎，检索的核心是用TF-IDF计算文本的特征权重，根据Cosine相似性原理比较查询语句和文档的相似性。
 
-#特点
+# 特点
 * 字符转码，信息指纹，网页去重，TF-IDF，余弦相似度，MySQL, Redis，单例模式，简单工厂模式，Epoll，线程池，TCP, STL
 
-#开发环境
+# 开发环境
 ```
 * CentOS Linux release 7.0.1406 (x64)
 * g++ (GCC) 4.8.3 20140911 (Red Hat 4.8.3-9)
 ```
 
-#动态库需求
+# 动态库需求
 ```
 NLPIR
 JsonCpp
@@ -19,7 +19,7 @@ Redis
 MySQL
 ```
 
-#文件结构
+# 文件结构
 
 ```
 ./
@@ -44,7 +44,7 @@ MySQL
 │   ├── EpollPoller.h 	Epoll类，非阻塞ET模式，处理Socket并发
 │   ├── FileMgr.h 		网页库文件管理器，负责网页库文件的增加，删除，查找功能
 │   ├── hiredis.h 		hiredis头文件		
-│   ├── IndexDB.h  		索引数据库类，用mysql保存网页库的索引 
+│   ├── IndexDB.h  		索引数据库类，用mysql保存网页库的索引
 │   ├── IndexEntry.h 	索引项类，定义索引的格式
 │   ├── Indexer.h 		索引管理器类，抽象类，作接口用。
 │   ├── IndexFile.h 	索引文件类，用文件保存网页库的索引
@@ -114,15 +114,15 @@ MySQL
 
 ```
 
-#程序流程
+# 程序流程
 ```
 准备阶段：
 Begin ——> Load Configuration ——> Daemon Process
-——> Raw Page Queue ——> Deduplicate ——> Page Database 
-——> Build Invert Index Table 
+——> Raw Page Queue ——> Deduplicate ——> Page Database
+——> Build Invert Index Table
 
 启动阶段：
-1. 
+1.
 ThreadPool ——> Start Threads ——> Start Thread Cache ——> Threads Waiting
 2.
 Socket ——> EpollPool Looping
@@ -148,19 +148,19 @@ Page Exist && Hash Correct ——NO——> return failure
      |
  Get Excerpt
      |
-Json Serialization 
+Json Serialization
      |
- Add Cache 
+ Add Cache
      |
  return result
 
 ```
-#程序样例
+# 程序样例
 ```
-[usr1@localhost SearchEngine]$ ./test/client.o 
+[usr1@localhost SearchEngine]$ ./test/client.o
 Please input query word:
 理论
-result: 
+result:
 [
    {
       "content" : "科学院经济研究所“国外现代经济理论前沿研究”课题的经费资助，...的学者吸收国外主流劳动经济学的理论成果，以劳动力的市场...的应用研究方面，而且在它的基础理论建设方面作出更积极的努力。...",
