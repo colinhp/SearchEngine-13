@@ -11,11 +11,11 @@
 #include<memory>
 
 ThreadPool::ThreadPool(size_t queue_size, size_t threads_num )
-: m_mutex(),  
-  m_empty( m_mutex), 
-  m_full( m_mutex ), 
-  m_queueSize( queue_size), 
-  m_threadNum( threads_num ), 
+: m_mutex(),
+  m_empty( m_mutex),
+  m_full( m_mutex ),
+  m_queueSize( queue_size),
+  m_threadNum( threads_num ),
   m_starting(false)
 {
 	MY_LOG_DEBUG("ThreadPool::ThreadPool()");
@@ -26,11 +26,11 @@ void ThreadPool::start()
 {
 
 	MY_LOG_DEBUG("ThreadPool::start()");
-	if( m_starting == false)
+	if( !m_starting)
 	{
 		for( size_t idx =0; idx != m_threadNum; idx++)
 		{
-			m_threadsVec.push_back( 
+			m_threadsVec.push_back(
 					std::unique_ptr< Thread > (
 						new Thread( std::bind(& ThreadPool::run_in_thread, this))
 						) );
@@ -49,11 +49,11 @@ void ThreadPool::stop()
 {
 
 
-	if( m_starting == false )
+	if( !m_starting )
 	{
-		return ;	
+		return ;
 	}
-	else 
+	else
 	{
 
 		MY_LOG_DEBUG("ThreadPool::stop()");
@@ -101,7 +101,7 @@ Task ThreadPool::get_task()
 		m_empty.notify();
 		return task;
 	}
-	
+
 	Task empty_task;
 	return empty_task;
 
@@ -118,7 +118,7 @@ void ThreadPool::run_in_thread()
 	int port = atoi( cf["redis_port"].c_str());
 	Cache cache( cf["redis_host"], port);
 
-	while( m_starting )	
+	while( m_starting )
 	{
 		Task task = get_task();
 		if( m_starting)
